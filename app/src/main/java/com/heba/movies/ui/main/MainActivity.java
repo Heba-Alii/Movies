@@ -1,8 +1,10 @@
-package com.heba.movies;
+package com.heba.movies.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.heba.movies.R;
 
 public class MainActivity extends AppCompatActivity {
 

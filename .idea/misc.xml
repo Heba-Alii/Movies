@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Soft-Expert/app/src/main/res/drawable/card_view.xml" value="0.134" />
         <entry key="..\:/Soft-Expert/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/Soft-Expert/app/src/main/res/layout/fragment_details.xml" value="0.20416666666666666" />
+        <entry key="..\:/Soft-Expert/app/src/main/res/layout/fragment_details.xml" value="0.25" />
         <entry key="..\:/Soft-Expert/app/src/main/res/layout/fragment_listing.xml" value="0.20416666666666666" />
         <entry key="..\:/Soft-Expert/app/src/main/res/layout/movie_item_details.xml" value="0.203125" />
       </map>

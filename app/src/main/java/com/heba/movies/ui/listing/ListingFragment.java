@@ -7,32 +7,29 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.heba.movies.R;
+import com.heba.movies.databinding.FragmentDetailsBinding;
+import com.heba.movies.databinding.FragmentListingBinding;
 
 public class ListingFragment extends Fragment {
 
-    private ListingViewModel mViewModel;
-
-    public static ListingFragment newInstance() {
-        return new ListingFragment();
-    }
+    ListingViewModel listingViewModel;
+    private FragmentListingBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_listing, container, false);
+        binding = FragmentListingBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        listingViewModel = ViewModelProviders.of(this).get(ListingViewModel.class);
+        return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ListingViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }

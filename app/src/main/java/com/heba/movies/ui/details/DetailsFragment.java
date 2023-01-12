@@ -7,32 +7,28 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.heba.movies.R;
+import com.heba.movies.databinding.FragmentDetailsBinding;
 
 public class DetailsFragment extends Fragment {
 
-    private DetailsViewModel mViewModel;
-
-    public static DetailsFragment newInstance() {
-        return new DetailsFragment();
-    }
+    DetailsViewModel detailsViewModel;
+    private FragmentDetailsBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_details, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
-        // TODO: Use the ViewModel
+        binding = FragmentDetailsBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        // return inflater.inflate(R.layout.fragment_details, container, false);
+        detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
+        return root;
     }
 
 }
