@@ -8,7 +8,7 @@ import com.heba.movies.pojo.MoviesModel;
 import java.util.List;
 
 public class DetailsViewModel extends ViewModel {
-    MutableLiveData<MoviesModel> postListMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<MoviesModel> movieListMutableLiveData = new MutableLiveData<>();
 
     public void getMovies() {
 

@@ -1,5 +1,6 @@
 package com.heba.movies.ui.details;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.heba.movies.R;
 import com.heba.movies.databinding.FragmentDetailsBinding;
+import com.heba.movies.pojo.MoviesModel;
 
 public class DetailsFragment extends Fragment {
 
@@ -28,6 +30,14 @@ public class DetailsFragment extends Fragment {
         View root = binding.getRoot();
         // return inflater.inflate(R.layout.fragment_details, container, false);
         detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
+        detailsViewModel.movieListMutableLiveData.observe(this, new Observer<MoviesModel>() {
+            @Override
+            public void onChanged(MoviesModel moviesModel) {
+                binding.movieTitle.setText(moviesModel.getTitle());
+                binding.movieDetailsYearProduction.setText(moviesModel.getReleaseDate());
+                binding.movieDesc.setText(moviesModel.getOverview());
+            }
+        });
         return root;
     }
 
