@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.heba.movies.R;
 import com.heba.movies.databinding.FragmentDetailsBinding;
 import com.heba.movies.databinding.FragmentListingBinding;
+import com.heba.movies.pojo.GenreModel;
 import com.heba.movies.pojo.MoviesModel;
 
 public class ListingFragment extends Fragment {
@@ -34,15 +35,14 @@ public class ListingFragment extends Fragment {
         binding = FragmentListingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         listingViewModel = ViewModelProviders.of(this).get(ListingViewModel.class);
-        listingViewModel.getMovies();
+        listingViewModel.getGenres();
         MovieListingAdapter movieListingAdapter = new MovieListingAdapter();
         binding.listingRecycler.setAdapter(movieListingAdapter);
-        listingViewModel.moviesListMutableLiveData.observe(this, new Observer<MoviesModel>() {
+        listingViewModel.genreMutableLiveData.observe(this, new Observer<GenreModel>() {
             @Override
-            public void onChanged(MoviesModel moviesModel) {
+            public void onChanged(GenreModel genreModel) {
+                binding.moviesTab.addTab(binding.moviesTab.newTab().setText(genreModel.getName()));
 
-                binding.listingRecycler.setAdapter(movieListingAdapter);
-                int index=getArguments().getInt("index");
 
             }
         });
@@ -51,7 +51,6 @@ public class ListingFragment extends Fragment {
     }
 
     public void initView() {
-        binding.listingRecycler.addOnChildAttachStateChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.moviesTab));
         binding.moviesTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
