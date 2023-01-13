@@ -23,5 +23,4 @@ public interface MoviesInterface {
 
     @GET("discover/movie")
     public Call<MovieList> getMoviesByGenre(@Query("with_genres") int genreId, @Query("page") int page);
-
 }
