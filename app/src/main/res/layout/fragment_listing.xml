@@ -6,29 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.listing.ListingFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/card_view"
-        android:gravity="center">
 
-
-        <RelativeLayout
-            android:id="@+id/relative_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/movies_tab"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
                 android:foregroundGravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layoutDirection="ltr"
                 app:tabBackground="@drawable/card_view"
                 app:tabGravity="fill"
@@ -37,16 +28,19 @@
                 app:tabMaxWidth="0dp"
                 app:tabMinWidth="80dp"
                 app:tabMode="scrollable"
-                app:tabSelectedTextColor="#FFFFFF"
+                app:tabSelectedTextColor="#000000"
                 app:tabTextColor="#000000" />
-        </RelativeLayout>
+
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listing_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/relative_layout"
+            android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@id/movies_tab"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
             android:layout_marginTop="2dp"
             android:paddingBottom="15dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -55,6 +49,5 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
