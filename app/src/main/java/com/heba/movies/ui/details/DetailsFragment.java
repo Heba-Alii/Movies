@@ -54,7 +54,6 @@ public class DetailsFragment extends Fragment {
         });
         return root;
     }
-
     public void movieImage(String url) {
         Glide.with(this)
                 .load(url)
