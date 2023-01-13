@@ -37,23 +37,17 @@ public class DetailsFragment extends Fragment {
         detailsViewModel.detailsModelMutableLiveData.observe(this, new Observer<DetailsModel>() {
             @Override
             public void onChanged(DetailsModel detailsModel) {
-                binding.movieNameDetails.setText(detailsModel.getTitle());
-                binding.movieTitle.setText(detailsModel.getTitle());
-                binding.movieDetailsYearProduction.setText(detailsModel.getRelease_date());
-                binding.movieDesc.setText(detailsModel.getOverview());
                 movieImage(detailsModel.getPoster_path());
                 binding.ratingBar.setRating(detailsModel.getVote_average());
-                // binding.setMovieDetails(detailsModel);
+                binding.setMovieDetails(detailsModel);
             }
         });
         return root;
     }
-
     public void movieImage(String url) {
         Glide.with(this)
                 .load(url)
                 .fitCenter()
                 .into(binding.imgDetails);
     }
-
 }

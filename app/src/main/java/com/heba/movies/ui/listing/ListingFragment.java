@@ -20,7 +20,6 @@ import com.heba.movies.pojo.MovieList;
 import java.util.Objects;
 
 public class ListingFragment extends Fragment {
-
     ListingViewModel listingViewModel;
     private FragmentListingBinding binding;
     private MovieListingAdapter movieListingAdapter;
@@ -44,7 +43,6 @@ public class ListingFragment extends Fragment {
                 }
             }
         });
-
         listingViewModel.moviesListMutableLiveData.observe(getViewLifecycleOwner(), new Observer<MovieList>() {
             @Override
             public void onChanged(MovieList movieList) {
@@ -66,12 +64,10 @@ public class ListingFragment extends Fragment {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
     }

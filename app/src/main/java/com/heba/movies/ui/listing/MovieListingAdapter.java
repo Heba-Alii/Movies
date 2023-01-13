@@ -77,8 +77,6 @@ public class MovieListingAdapter extends RecyclerView.Adapter<MovieListingAdapte
             movie_name_txt = itemView.findViewById(R.id.movie_name_txt);
             movie_year_txt = itemView.findViewById(R.id.movie_year_txt);
             movie_Cv = itemView.findViewById(R.id.movie_CV);
-
-
         }
     }
 }

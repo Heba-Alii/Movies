@@ -31,7 +31,6 @@ public class ListingViewModel extends ViewModel {
             @Override
             public void onFailure(Call<GenereList> call, Throwable t) {
                 Log.d("TAG", "onResponse: not success" + t.getMessage());
-
             }
         });
     }

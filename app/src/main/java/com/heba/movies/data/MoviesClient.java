@@ -18,9 +18,8 @@ public class MoviesClient {
     private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private MoviesInterface moviesInterface;
     private static MoviesClient INSTANCE;
-     private static final String QUERY_LANGUAGE = "en";
+    private static final String QUERY_LANGUAGE = "en";
     private static final String IMAGE_LANGUAGE = "en,null";
-
 
 
     public MoviesClient() {
@@ -31,21 +30,17 @@ public class MoviesClient {
                             public Response intercept(Interceptor.Chain chain) throws IOException {
                                 Request originalRequest = chain.request();
                                 HttpUrl originalUrl = originalRequest.url();
-
                                 HttpUrl url = originalUrl.newBuilder()
                                         .addQueryParameter("api_key", "112e4a60455675fcc2e069b755f8e1bf")
                                         .addQueryParameter("language", QUERY_LANGUAGE)
                                         .addQueryParameter("include_image_language", IMAGE_LANGUAGE)
-
                                         .build();
                                 Request.Builder requestBuilder = originalRequest.newBuilder().url(url);
                                 Request request = requestBuilder.build();
-
                                 return chain.proceed(request);
                             }
                         })
                 .build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -60,7 +55,6 @@ public class MoviesClient {
         }
         return INSTANCE;
     }
-
     public MoviesInterface getMovies() {
         return moviesInterface;
     }
