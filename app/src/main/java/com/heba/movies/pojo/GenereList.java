@@ -3,7 +3,7 @@ package com.heba.movies.pojo;
 import java.io.Serializable;
 import java.util.List;
 
-public class GenreList implements Serializable {
+public class GenereList implements Serializable {
     private List<GenreModel> genres;
 
     public List<GenreModel> getGenres() {

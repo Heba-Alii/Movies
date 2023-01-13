@@ -28,19 +28,22 @@ public class DetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         binding = FragmentDetailsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        // return inflater.inflate(R.layout.fragment_details, container, false);
         detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
-        detailsViewModel.getMoviesDetails(1);
+        int moviesId = getArguments().getInt("movieId");
+        detailsViewModel.getMoviesDetails(moviesId);
         detailsViewModel.detailsModelMutableLiveData.observe(this, new Observer<DetailsModel>() {
             @Override
             public void onChanged(DetailsModel detailsModel) {
-                binding.movieTitle.setText(detailsModel.getOriginal_title());
+                binding.movieNameDetails.setText(detailsModel.getTitle());
+                binding.movieTitle.setText(detailsModel.getTitle());
                 binding.movieDetailsYearProduction.setText(detailsModel.getRelease_date());
                 binding.movieDesc.setText(detailsModel.getOverview());
                 movieImage(detailsModel.getPoster_path());
                 binding.ratingBar.setRating(detailsModel.getVote_average());
+                // binding.setMovieDetails(detailsModel);
             }
         });
         return root;

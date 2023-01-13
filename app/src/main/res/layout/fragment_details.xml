@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="details"
-            type="com.heba.movies.pojo.DetailsModel" >
+            name="movieDetails"
+            type="com.heba.movies.pojo.DetailsModel">
 
         </variable>
     </data>
@@ -33,7 +33,7 @@
             android:id="@+id/movie_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{details.original_title}"
+            android:text="@{movieDetails.title}"
             android:textColor="@color/black"
             android:textSize="20sp"
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:text="@{details.original_title}"
+            android:text="@{movieDetails.title}"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{details.release_date}"
+            android:text="@{movieDetails.release_date}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/movie_name_details"
             app:layout_constraintTop_toBottomOf="@+id/movie_name_details" />
@@ -102,7 +102,7 @@
             android:background="@drawable/card_view"
             android:elevation="10dp"
             android:padding="20dp"
-            android:text="@{details.overview}"
+            android:text="@{movieDetails.overview}"
             app:layout_constraintStart_toStartOf="@+id/desc"
             app:layout_constraintTop_toBottomOf="@+id/desc" />
 
@@ -126,7 +126,7 @@
             android:background="@drawable/card_view"
             android:elevation="10dp"
             android:padding="20dp"
-            android:text="@{details.overview}"
+            android:text="@{movieDetails.overview}"
             app:layout_constraintStart_toStartOf="@+id/movie_desc"
             app:layout_constraintTop_toBottomOf="@+id/cast" />
     </androidx.constraintlayout.widget.ConstraintLayout>

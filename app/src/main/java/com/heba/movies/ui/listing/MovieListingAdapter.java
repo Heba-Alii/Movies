@@ -1,5 +1,6 @@
 package com.heba.movies.ui.listing;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,11 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.heba.movies.R;
 import com.heba.movies.pojo.MoviesModel;
+import com.heba.movies.ui.details.DetailsFragment;
 
 import java.util.ArrayList;
 
@@ -36,7 +41,18 @@ public class MovieListingAdapter extends RecyclerView.Adapter<MovieListingAdapte
         Glide.with(holder.itemView)
                 .load(moviesModel.getImages()).placeholder(R.drawable.mob).fitCenter()
                 .into(holder.movie_img);
-
+        holder.movie_Cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailsFragment detailsFragment = new DetailsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("movieId", moviesModel.getId());
+                detailsFragment.setArguments(bundle);
+                AppCompatActivity activity1 = (AppCompatActivity) view.getContext();
+                activity1.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, detailsFragment)
+                        .addToBackStack("").commit();
+            }
+        });
 
     }
 
@@ -53,12 +69,14 @@ public class MovieListingAdapter extends RecyclerView.Adapter<MovieListingAdapte
     public class MovieListingViewHolder extends RecyclerView.ViewHolder {
         ImageView movie_img;
         TextView movie_name_txt, movie_year_txt;
+        CardView movie_Cv;
 
         public MovieListingViewHolder(@NonNull View itemView) {
             super(itemView);
             movie_img = itemView.findViewById(R.id.movie_img);
             movie_name_txt = itemView.findViewById(R.id.movie_name_txt);
             movie_year_txt = itemView.findViewById(R.id.movie_year_txt);
+            movie_Cv = itemView.findViewById(R.id.movie_CV);
 
 
         }

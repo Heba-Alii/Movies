@@ -1,32 +1,28 @@
 package com.heba.movies.ui.listing;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.google.android.material.tabs.TabLayout;
-import com.heba.movies.R;
-import com.heba.movies.databinding.FragmentDetailsBinding;
 import com.heba.movies.databinding.FragmentListingBinding;
-import com.heba.movies.pojo.GenreModel;
-import com.heba.movies.pojo.MoviesModel;
+import com.heba.movies.pojo.GenereList;
+import com.heba.movies.pojo.MovieList;
+
+import java.util.Objects;
 
 public class ListingFragment extends Fragment {
 
     ListingViewModel listingViewModel;
     private FragmentListingBinding binding;
-    private TabLayout tabLayout;
     private MovieListingAdapter movieListingAdapter;
 
     @Override
@@ -36,14 +32,23 @@ public class ListingFragment extends Fragment {
         View root = binding.getRoot();
         listingViewModel = ViewModelProviders.of(this).get(ListingViewModel.class);
         listingViewModel.getGenres();
-        MovieListingAdapter movieListingAdapter = new MovieListingAdapter();
+        movieListingAdapter = new MovieListingAdapter();
         binding.listingRecycler.setAdapter(movieListingAdapter);
-        listingViewModel.genreMutableLiveData.observe(this, new Observer<GenreModel>() {
+        listingViewModel.genreMutableLiveData.observe(getViewLifecycleOwner(), new Observer<GenereList>() {
             @Override
-            public void onChanged(GenreModel genreModel) {
-                binding.moviesTab.addTab(binding.moviesTab.newTab().setText(genreModel.getName()));
+            public void onChanged(GenereList genreList) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    genreList.getGenres().forEach(genreModel -> {
+                        binding.moviesTab.addTab(binding.moviesTab.newTab().setText(genreModel.getName()));
+                    });
+                }
+            }
+        });
 
-
+        listingViewModel.moviesListMutableLiveData.observe(getViewLifecycleOwner(), new Observer<MovieList>() {
+            @Override
+            public void onChanged(MovieList movieList) {
+                movieListingAdapter.setList(movieList.getResults());
             }
         });
         initView();
@@ -56,6 +61,7 @@ public class ListingFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 binding.listingRecycler.scrollToPosition(tab.getPosition());
                 tab.select();
+                listingViewModel.getMoviesByGenre(Objects.requireNonNull(listingViewModel.genreMutableLiveData.getValue()).getGenres().get(tab.getPosition()).getId());
             }
 
             @Override
@@ -68,7 +74,5 @@ public class ListingFragment extends Fragment {
 
             }
         });
-
     }
-
 }

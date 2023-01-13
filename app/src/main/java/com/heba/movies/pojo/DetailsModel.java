@@ -3,18 +3,18 @@ package com.heba.movies.pojo;
 import java.io.Serializable;
 
 public class DetailsModel implements Serializable {
-    private String original_title;
+    private String title;
     private String overview = null;
     private String poster_path = null;
     private String release_date;
     private float vote_average;
 
-    public String getOriginal_title() {
-        return original_title;
+    public String getTitle() {
+        return title;
     }
 
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getOverview() {

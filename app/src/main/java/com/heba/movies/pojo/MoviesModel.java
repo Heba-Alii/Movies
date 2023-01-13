@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class MoviesModel implements Serializable {
     private int id;
-    private String images;
+    private String poster_path;
     private String title;
-    private String releaseDate;
+    private String release_date;
     private double voteAverage;
     private String overview;
     private String cast;
@@ -20,11 +20,11 @@ public class MoviesModel implements Serializable {
     }
 
     public String getImages() {
-        return images;
+        return poster_path;
     }
 
-    public void setImages(String images) {
-        this.images = images;
+    public void setImages(String poster_path) {
+        this.poster_path = poster_path;
     }
 
     public String getTitle() {
@@ -36,11 +36,11 @@ public class MoviesModel implements Serializable {
     }
 
     public String getReleaseDate() {
-        return releaseDate;
+        return release_date;
     }
 
     public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+        this.release_date = releaseDate;
     }
 
     public double getVoteAverage() {

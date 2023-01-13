@@ -4,50 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.listing.ListingFragment">
 
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/movies_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        android:foregroundGravity="center"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabIndicator="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/black"
+        android:layoutDirection="ltr"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabIndicatorHeight="0dp"
+        app:tabMaxWidth="0dp"
+        app:tabMinWidth="50dp"
+        app:tabMode="scrollable"
+        />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/movies_tab"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:elevation="0dp"
-                android:foregroundGravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layoutDirection="ltr"
-                app:tabBackground="@drawable/card_view"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@android:color/transparent"
-                app:tabIndicatorHeight="0dp"
-                app:tabMaxWidth="0dp"
-                app:tabMinWidth="80dp"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="#000000"
-                app:tabTextColor="#000000" />
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listing_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/movies_tab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="12dp"
+        android:paddingBottom="15dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/movie_listing_items">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listing_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           app:layout_constraintTop_toBottomOf="@id/movies_tab"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            android:layout_marginTop="2dp"
-            android:paddingBottom="15dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/movie_listing_items">
-
-        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
