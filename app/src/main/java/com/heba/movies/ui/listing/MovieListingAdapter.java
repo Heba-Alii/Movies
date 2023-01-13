@@ -20,6 +20,8 @@ import com.heba.movies.ui.details.DetailsFragment;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 //import eg.gov.iti.recyclerview.R;
 //import eg.gov.iti.recyclerview.pojo.MoviesModel;
 
@@ -51,6 +53,7 @@ public class MovieListingAdapter extends RecyclerView.Adapter<MovieListingAdapte
                 AppCompatActivity activity1 = (AppCompatActivity) view.getContext();
                 activity1.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, detailsFragment)
                         .addToBackStack("").commit();
+
             }
         });
 

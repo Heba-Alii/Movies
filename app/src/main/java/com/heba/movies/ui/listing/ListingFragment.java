@@ -41,6 +41,7 @@ public class ListingFragment extends Fragment {
                         binding.moviesTab.addTab(binding.moviesTab.newTab().setText(genreModel.getName()));
                     });
                 }
+
             }
         });
         listingViewModel.moviesListMutableLiveData.observe(getViewLifecycleOwner(), new Observer<MovieList>() {

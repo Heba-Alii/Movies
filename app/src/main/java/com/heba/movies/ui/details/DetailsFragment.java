@@ -1,5 +1,6 @@
 package com.heba.movies.ui.details;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,6 +20,7 @@ import com.heba.movies.R;
 import com.heba.movies.databinding.FragmentDetailsBinding;
 import com.heba.movies.pojo.DetailsModel;
 import com.heba.movies.pojo.MoviesModel;
+import com.heba.movies.ui.listing.ListingFragment;
 
 public class DetailsFragment extends Fragment {
 
@@ -40,10 +42,19 @@ public class DetailsFragment extends Fragment {
                 movieImage(detailsModel.getPoster_path());
                 binding.ratingBar.setRating(detailsModel.getVote_average());
                 binding.setMovieDetails(detailsModel);
+                binding.backDetails.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, new ListingFragment())
+                                .addToBackStack("").commit();
+                    }
+                });
             }
         });
         return root;
     }
+
     public void movieImage(String url) {
         Glide.with(this)
                 .load(url)
