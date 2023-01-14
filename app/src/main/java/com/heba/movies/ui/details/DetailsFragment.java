@@ -56,7 +56,7 @@ public class DetailsFragment extends Fragment {
     }
     public void movieImage(String url) {
         Glide.with(this)
-                .load(url)
+                .load(url).placeholder(R.drawable.mob)
                 .fitCenter()
                 .into(binding.imgDetails);
     }
